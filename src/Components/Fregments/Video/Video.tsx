@@ -1,15 +1,20 @@
-import React,{FC} from 'react'
+import React, { FC } from 'react'
 
-const Video:FC<propsType>=props=>{
-    return(
+const Video: FC<propsType> = props => {
+    return (
         <div>
-            <video src={props.video}/>
+            {props.video
+                ? <div>
+                    <video src={props.video} />
+                </div>
+                : <div></div>
+            }
         </div>
     )
 }
 
 export default Video
 
-type propsType={
-    video:string
+type propsType = {
+    video: string
 }
