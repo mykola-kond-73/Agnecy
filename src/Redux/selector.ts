@@ -1,34 +1,39 @@
-import {AppStateType} from './reduxStore'
+import { AppStateType } from './reduxStore'
 
-const getVideo=(state:AppStateType)=>{
+const getVideo = (state: AppStateType) => {
     return state.rootReducer.video
 }
 
-const getProjects=(state:AppStateType)=>{
+const getProjects = (state: AppStateType) => {
     return state.rootReducer.projects
 }
 
-const getPerson=(state:AppStateType)=>{
+const getPerson = (state: AppStateType) => {
     return state.rootReducer.person
 }
 
-const getIsFetching=(state:AppStateType)=>{
+const getIsFetching = (state: AppStateType) => {
     return state.rootReducer.isFetching
 }
 
-const getIsMessage=(state:AppStateType)=>{
-    return state.rootReducer.isMessage
+const getIsGoodMessage = (state: AppStateType) => {
+    return state.rootReducer.isGoodMessage
 }
 
-const getIsSubscribe=(state:AppStateType)=>{
-    return state.rootReducer.isSubscribe
+const getIsGoodSubscribe = (state: AppStateType) => {
+    return state.rootReducer.isGoodSubscribe
 }
 
-export{
+const getIsGetProject = (state: AppStateType) => {
+    return state.rootReducer.isGetProject
+}
+
+export {
     getVideo,
-getProjects,
-getPerson,
-getIsFetching,
-getIsMessage,
-getIsSubscribe
+    getProjects,
+    getPerson,
+    getIsFetching,
+    getIsGoodMessage,
+    getIsGoodSubscribe,
+    getIsGetProject,
 }

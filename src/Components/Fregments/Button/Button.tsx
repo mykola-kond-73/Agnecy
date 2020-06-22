@@ -1,9 +1,8 @@
 import React,{FC} from 'react'
-import classes from './Button.module.css'
 
 const Button:FC<propsType>=props=>{
     return(
-        <div className={classes.button}>
+        <div>
             <button disabled={props.disabled}>
                 {props.inscription}
             </button>

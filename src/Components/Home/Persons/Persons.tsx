@@ -5,11 +5,13 @@ import { AppStateType } from '../../../Redux/reduxStore'
 import { getPerson } from '../../../Redux/selector'
 import TextInfo from '../../Fregments/TextInfo/TextInfo'
 import Image from '../../Fregments/Image/Image'
+import { NavLink } from 'react-router-dom'
 
 const Persons: FC<Props> = props => {
     const [title, setTitle] = useState('MEET OUR TEAM')
     const [text, setText] = useState('Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed dooing eiusmod tempor incididut labore Ui/Ux, print template.')
-
+    const [personIndex, setPersonIndex] = useState(0)
+    const personData = props.persons![personIndex]
     return (
         <div>
             <div>
@@ -17,16 +19,30 @@ const Persons: FC<Props> = props => {
             </div>
             <div>
                 <div>
-                    <Image src='' alt='' />
+                    <Image src={personData.photo} alt={personData.name} />
                 </div>
-                {/* <div>
-        <TextInfo title={props.persons!.}/>
-    </div> */}
+                <div>
+                    <TextInfo title={personData.name} text={personData.information} />
+                </div>
+                <div>
+                    <div>
+                        <a href={personData.contact.facebook}>Facebook</a>
+                    </div>
+                    <div>
+                        <a href={personData.contact.dribble}>Dribble</a>
+                    </div>
+                    <div>
+                        <a href={personData.contact.behance}>Behance</a>
+                    </div>
+                    <div>
+                        <a href={personData.contact.twitter}> Twitter</a>
+                    </div>
+                </div>
             </div>
             <div>
                 {props.persons!.map((elem, index) => {
                     return (
-                        <div>
+                        <div onClick={() => setPersonIndex(index)}>
                             {elem.photo
                                 ?
                                 <div>

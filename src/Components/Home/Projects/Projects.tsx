@@ -2,9 +2,11 @@ import React, { FC, useState } from 'react'
 import classes from './Projects.module.css'
 import { connect, ConnectedProps } from 'react-redux'
 import { AppStateType } from '../../../Redux/reduxStore'
-import { getProjects } from '../../../Redux/selector'
+import { getProjects, getIsGetProject } from '../../../Redux/selector'
 import TextInfo from '../../Fregments/TextInfo/TextInfo'
 import Image from '../../Fregments/Image/Image'
+import { getProjects as getProjectsThunk, actions } from '../../../Redux/reducer'
+import Preloader from '../../Fregments/Preloader/Preloader'
 
 const Project: FC<Props> = props => {
     const [title, setTitle] = useState('FEATURE PRODUCTS')
@@ -16,6 +18,12 @@ const Project: FC<Props> = props => {
         { content: 'USER INTERFACE' },
         { content: 'MOCK-UP' },
     ])
+
+    const projectsFunction = (pageSize: number, title: string) => {
+        props.getProjectsThunk(pageSize, title)
+        props.updateisGetProject(false)
+    }
+
     return (
         <div>
             <div>
@@ -24,7 +32,7 @@ const Project: FC<Props> = props => {
             <div>
                 {filters.map(elem => {
                     return (
-                        <div>
+                        <div onClick={() => projectsFunction(8, elem.content)}>
                             {elem.content}
                         </div>
                     )
@@ -32,32 +40,42 @@ const Project: FC<Props> = props => {
 
                 }
             </div>
-            <div>
-                {props.project!.map(elem => {
-                    {
-                        elem.photo
-                            ?
+            {!props.isGetProject ?
+                <div>
+                    {props.project!.map(elem => {
+                        return (
                             <div>
-                                <Image src={elem.photo} alt={`project ${elem.id}`} />
-                            </div>
-                            : <div></div>
+                                {
+                                    elem.photo
+                                        ?
+                                        <div>
+                                            <Image src={elem.photo} alt={`project ${elem.id}`} />
+                                        </div>
+                                        : <div></div>
 
+                                }
+                            </div>
+                        )
+                    })
                     }
-                })
-                }
-            </div>
+                </div>
+                : <div>
+                    <Preloader img='' />
+                </div>
+            }
         </div>
     )
 }
 
-
 const mapStateToProps = (state: AppStateType) => {
     return {
-        project: getProjects(state)
+        project: getProjects(state),
+        isGetProject: getIsGetProject(state)
     }
 }
 
-const connector = connect(mapStateToProps, {})
+const updateisGetProject = actions.updateisGetProject
+const connector = connect(mapStateToProps, { getProjectsThunk, updateisGetProject })
 
 export default connector(Project)
 

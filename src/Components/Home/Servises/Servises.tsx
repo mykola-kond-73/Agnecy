@@ -41,14 +41,16 @@ const Servises: FC = () => {
             </div>
             <div>
                 {servise.map(elem => {
-                    <div>
+                    return (
                         <div>
-                            <Image src={elem.img} alt='***' />
+                            <div>
+                                <Image src={elem.img} alt='***' />
+                            </div>
+                            <div>
+                                <TextInfo title={elem.title} text={elem.text} />
+                            </div>
                         </div>
-                        <div>
-                            <TextInfo title={elem.title} text={elem.text} />
-                        </div>
-                    </div>
+                    )
                 })}
             </div>
         </div>

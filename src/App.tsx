@@ -1,31 +1,44 @@
-import React from 'react';
+import React, { FC } from 'react';
 import classes from './App.module.css'
 import { BrowserRouter, Switch, Redirect, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './Redux/reduxStore';
+import { Provider, connect, ConnectedProps } from 'react-redux';
+import store, { AppStateType } from './Redux/reduxStore';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import Home from './Components/Home/Home';
+import { getIsFetching } from './Redux/selector';
+import Preloader from './Components/Fregments/Preloader/Preloader';
 
-const App = () => {
+const App: FC<PropsAppType> = props => {
+  if (!props.isFetching) {
+    return <Preloader img='' />
+  }
   return (
-    <div>
-      <BrowserRouter>
-        <Provider store={store}>
-          <Switch>
+    <BrowserRouter>
+      <Provider store={store}>
+        <Switch>
+          <div>
+            <Header />
             <div>
-              <Header />
-              <div>
-                <Route path='/home' render={() => <Home />} />
-                <Route path='' render={() => <Redirect to='/home' />} />
-              </div>
-              <Footer />
+              <Route path='/home' render={() => <Home />} />
+              <Route path='' render={() => <Redirect to='/home' />} />
             </div>
-          </Switch>
-        </Provider>
-      </BrowserRouter>
-    </div>
+            <Footer />
+          </div>
+        </Switch>
+      </Provider>
+    </BrowserRouter>
   )
 }
 
-export default App;
+const mapStateToProps = (state: AppStateType) => {
+  return {
+    isFetching: getIsFetching(state)
+  }
+}
+
+const connector = connect(mapStateToProps, {})
+
+export default connector(App)
+
+type PropsAppType = ConnectedProps<typeof connector>

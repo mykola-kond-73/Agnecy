@@ -6,9 +6,27 @@ const initialState = {
     video: null as string | null,
     projects: null as Array<projectType> | null,
     person: null as Array<personType> | null,
+    // projects: [{
+    //     id: '1',
+    //     title: '',
+    //     photo: ''
+    // }],
+    // person: [{
+    //     id: '1',
+    //     name: '',
+    //     information: '',
+    //     photo: '',
+    //     contact: {
+    //         facebook: '',
+    //         dribble: '',
+    //         behance: '',
+    //         twitter: ''
+    //     }
+    // }],
     isFetching: false,
-    isMessage: false,
-    isSubscribe: false
+    isGoodMessage: false,
+    isGoodSubscribe: false,
+    isGetProject: false,
 }
 
 const rootReducer = (state = initialState, actions: actionsType) => {
@@ -23,7 +41,7 @@ const rootReducer = (state = initialState, actions: actionsType) => {
         case 'ADD_PROJECT':
             return {
                 ...state,
-                project:  actions.projects
+                project: actions.projects
             }
 
         case 'ADD_PERSOM':
@@ -41,13 +59,19 @@ const rootReducer = (state = initialState, actions: actionsType) => {
         case 'UP_DATE_IS_MESSAGE':
             return {
                 ...state,
-                isMessage: actions.isMessage
+                isGoodMessage: actions.isGoodMessage
             }
 
         case 'UP_DATE_IS_SUBSCRIBE':
             return {
                 ...state,
-                isSubscribe: actions.isSubscribe
+                isGoodSubscribe: actions.isGoodSubscribe
+            }
+
+        case 'UP_DATE_IS_GET_PROJECT':
+            return {
+                ...state,
+                isGetProject: actions.isGetProject
             }
 
         default:
@@ -60,8 +84,9 @@ const actions = {
     addProjects: (projects: Array<projectType>) => ({ type: 'ADD_PROJECT', projects } as const),
     addPerson: (person: Array<personType>) => ({ type: 'ADD_PERSOM', person } as const),
     updateIsFetchin: (isFetching: boolean) => ({ type: 'UP_DATE_IS_FETCHING', isFetching } as const),
-    updateisMessage: (isMessage: boolean) => ({ type: 'UP_DATE_IS_MESSAGE', isMessage } as const),
-    updateIsSubscribe: (isSubscribe: boolean) => ({ type: 'UP_DATE_IS_SUBSCRIBE', isSubscribe } as const)
+    updateIsGoodMessage: (isGoodMessage: boolean) => ({ type: 'UP_DATE_IS_MESSAGE', isGoodMessage } as const),
+    updateIsGoodSubscribe: (isGoodSubscribe: boolean) => ({ type: 'UP_DATE_IS_SUBSCRIBE', isGoodSubscribe } as const),
+    updateisGetProject: (isGetProject: boolean) => ({ type: 'UP_DATE_IS_GET_PROJECT', isGetProject } as const),
 }
 
 const createThunk = async (dispatch: dispatch, APIparam: any, APIMethod: (APIparam: any) => any, ActionsCreator: (actionParam: any) => actionsType) => {
@@ -78,20 +103,29 @@ const getVideo = (): thunkType => async (dispatch) => {
     createThunk(dispatch, null, API.getVideo.bind(API), actions.addVideo)
 }
 
-const getProjects = (): thunkType => async (dispatch) => {
-    createThunk(dispatch, null, API.getProject.bind(API), actions.addProjects)
+const getProjects = (pageSize = 8, title = 'ALL'): thunkType => async (dispatch) => {
+    // createThunk(dispatch, null, API.getProject.bind(API), actions.addProjects)
+    const responce = await API.getProject(pageSize, title)
+    if (responce.resultCode === ResultCodeEnum.Succes) {
+        dispatch(actions.addProjects(responce.data))
+        dispatch(actions.updateisGetProject(true))
+    }
 }
 
 const getPersons = (): thunkType => async (dispatch) => {
     createThunk(dispatch, null, API.getPerson.bind(API), actions.addPerson)
 }
-
+//* >>>
+//* >>>   там де "await" треба додати обробку помилок 
+//* >>>
 const postMessage = (messageContent: messageContentType): thunkType => async (dispatch) => {
-    createThunk(dispatch, messageContent, API.postMessage.bind(API), actions.updateisMessage)
+    await createThunk(dispatch, messageContent, API.postMessage.bind(API), actions.updateIsGoodMessage)
+    dispatch(actions.updateIsGoodMessage(false))
 }
 
 const postSubscribe = (subscribeContent: string): thunkType => async (dispatch) => {
-    createThunk(dispatch, subscribeContent, API.postSubscribe.bind(API), actions.updateIsSubscribe)
+    await createThunk(dispatch, subscribeContent, API.postSubscribe.bind(API), actions.updateIsGoodSubscribe)
+    dispatch(actions.updateIsGoodSubscribe(false))
 }
 
 export {

@@ -11,8 +11,8 @@ const API = {
         return instance.get<ResponceType<string>>('').then(responce => responce.data)
     },
 
-    getProject() {
-        return instance.get<ResponceType<Array<projectType>>>('').then(responce => responce.data)
+    getProject(pageSize:number,title:string) {
+        return instance.get<ResponceType<Array<projectType>>>(`/?page=${pageSize}&title=${title}`).then(responce => responce.data)
     },
 
     getPerson() {

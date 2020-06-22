@@ -5,7 +5,7 @@ import { messageContentType } from '../../../../Redux/reducer'
 import Button from '../../../Fregments/Button/Button'
 import { required } from '../../../../Untils/Validators'
 
-const ContactForm: FC<InjectedFormProps<messageContentType>> = ({ handleSubmit, error }) => {
+const ContactForm: FC<InjectedFormProps<messageContentType,ownPropsType>&ownPropsType> = ({ handleSubmit, error,isGoodMessage }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
@@ -21,10 +21,14 @@ const ContactForm: FC<InjectedFormProps<messageContentType>> = ({ handleSubmit, 
             </div>
 
             <div>
-                <Button inscription='SEND MESSAGE' disabled={false} />
+                <Button inscription='SEND MESSAGE' disabled={isGoodMessage} />
             </div>
         </form>
     )
 }
 
-export const ReduxContactForm = reduxForm<messageContentType>({ form: 'contact' })(ContactForm)
+export const ReduxContactForm = reduxForm<messageContentType,ownPropsType>({ form: 'contact' })(ContactForm)
+
+type ownPropsType={
+    isGoodMessage:boolean
+}
