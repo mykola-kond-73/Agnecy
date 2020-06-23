@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, ComponentType } from 'react';
 import classes from './App.module.css'
-import { BrowserRouter, Switch, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Redirect, Route, withRouter } from 'react-router-dom';
 import { Provider, connect, ConnectedProps } from 'react-redux';
 import store, { AppStateType } from './Redux/reduxStore';
 import Header from './Components/Header/Header';
@@ -8,26 +8,27 @@ import Footer from './Components/Footer/Footer';
 import Home from './Components/Home/Home';
 import { getIsFetching } from './Redux/selector';
 import Preloader from './Components/Fregments/Preloader/Preloader';
+import { compose } from 'redux';
 
 const App: FC<PropsAppType> = props => {
-  if (!props.isFetching) {
-    return <Preloader img='' />
-  }
+  //* >>>
+  // if (!props.isFetching) {
+  //   return <Preloader img='' />
+  // }
+  //* >>>
   return (
-    <BrowserRouter>
-      <Provider store={store}>
-        <Switch>
-          <div>
-            <Header />
-            <div>
-              <Route path='/home' render={() => <Home />} />
-              <Route path='' render={() => <Redirect to='/home' />} />
-            </div>
-            <Footer />
-          </div>
-        </Switch>
-      </Provider>
-    </BrowserRouter>
+
+    <Switch>
+      <div>
+        <Header />
+        <div>
+          <Route path='/home' render={() => <Home />} />
+          <Route path='' render={() => <Redirect to='/home' />} />
+        </div>
+        <Footer />
+      </div>
+    </Switch>
+
   )
 }
 
@@ -39,6 +40,19 @@ const mapStateToProps = (state: AppStateType) => {
 
 const connector = connect(mapStateToProps, {})
 
-export default connector(App)
+const AppContainer = compose<ComponentType>(
+  withRouter,
+  connector
+)(App)
+
+export default () => {
+  return (
+    <BrowserRouter>
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    </BrowserRouter >
+  )
+}
 
 type PropsAppType = ConnectedProps<typeof connector>
