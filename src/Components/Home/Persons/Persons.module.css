@@ -1,0 +1,83 @@
+/* todo >>> */
+/* todo >>> додати адаптив      */
+/* todo >>> */
+
+.container {
+    flex-direction: column;
+}
+
+.information {
+    width: 350px;
+}
+
+.information>div>p {
+    padding: 5px 0 0 10px;
+}
+
+.information>hr {
+    margin-left: 10px;
+}
+
+.personsContent,
+.container,
+.sotialNetwork,
+.RestPersons {
+    display: flex;
+}
+
+.personsContent {
+    padding: 35px 0 0 10px;
+}
+
+.photo>div img,
+.falsePhoto>div {
+    width: 230px;
+    height: 294px;
+    margin-right: 40px;
+}
+
+.personInformation>div>div>p {
+    width: 450px;
+}
+
+.personInformation_RestPersons {
+    padding-top: 10px;
+}
+
+.personInformation_RestPersons a {
+    color: #3f3f3f;
+}
+
+.sotialNetwork div {
+    left: -13px;
+    padding: 20px 13px;
+    font-weight: 500;
+}
+
+.personPhoto>div img,
+.falsePersonsPhoto>div,
+.sotialNetwork div{
+    position: relative;
+}
+
+.personPhoto>div img,
+.falsePersonsPhoto>div {
+    width: 130px;
+    height: 130px;
+    margin: 0 7.5px;
+    left:-7.5px;
+}
+
+.RestPersons {
+    padding-top: 20px;
+}
+
+.personName {
+    color: white;
+    background-color: #312f30;
+    text-align: center;
+    padding: 5px 0;
+    /* position: relative;
+    top: -28px; */
+    opacity: 0;
+}

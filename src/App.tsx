@@ -19,13 +19,17 @@ const App: FC<PropsAppType> = props => {
   return (
 
     <Switch>
-      <div>
-        <Header />
-        <div>
+      <div className={classes.appWraper}>
+        <div className={classes.headerApp}>
+            <Header />
+        </div>
+        <div className={classes.bodyProject}>
           <Route path='/home' render={() => <Home />} />
           <Route path='' render={() => <Redirect to='/home' />} />
         </div>
-        <Footer />
+        <div className={classes.footerApp}>
+          <Footer />
+        </div>
       </div>
     </Switch>
 

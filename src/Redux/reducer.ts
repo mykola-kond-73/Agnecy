@@ -4,25 +4,112 @@ import { Dispatch } from "react"
 
 const initialState = {
     video: null as string | null,
-    projects: null as Array<projectType> | null,
-    person: null as Array<personType> | null,
-    // projects: [{
-    //     id: '1',
-    //     title: '',
-    //     photo: ''
-    // }],
-    // person: [{
-    //     id: '1',
-    //     name: '',
-    //     information: '',
-    //     photo: '',
-    //     contact: {
-    //         facebook: '',
-    //         dribble: '',
-    //         behance: '',
-    //         twitter: ''
-    //     }
-    // }],
+    // projects: null as Array<projectType> | null,
+    // person: null as Array<personType> | null,
+    projects: [
+        {
+            id: '1',
+            title: '',
+            photo: ''
+        },
+        {
+            id: '2',
+            title: '',
+            photo: ''
+        },
+        {
+            id: '3',
+            title: '',
+            photo: ''
+        },
+        {
+            id: '4',
+            title: '',
+            photo: ''
+        },
+        {
+            id: '5',
+            title: '',
+            photo: ''
+        },
+        {
+            id: '6',
+            title: '',
+            photo: ''
+        },
+        {
+            id: '7',
+            title: '',
+            photo: ''
+        },
+        {
+            id: '8',
+            title: '',
+            photo: ''
+        },
+    ],
+    person: [
+        {
+        id: '1',
+        name: 'MARK WAUGH',
+        information: 'Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed dooing eiusmod tempor incididut labore Ui/Ux, print template.',
+        photo: '',
+        contact: {
+            facebook: '',
+            dribble: '',
+            behance: '',
+            twitter: ''
+        }
+    },
+    {
+        id: '2',
+        name: 'MARK JONSON',
+        information: 'Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed dooing eiusmod tempor incididut labore Ui/Ux, print template.',
+        photo: '',
+        contact: {
+            facebook: '',
+            dribble: '',
+            behance: '',
+            twitter: ''
+        }
+    },
+    {
+        id: '3',
+        name: 'BILL MUREY',
+        information: 'Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed dooing eiusmod tempor incididut labore Ui/Ux, print template.',
+        photo: '',
+        contact: {
+            facebook: '',
+            dribble: '',
+            behance: '',
+            twitter: ''
+        }
+    },
+    {
+        id: '4',
+        name: 'ALLIS WOTSON',
+        information: 'Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed dooing eiusmod tempor incididut labore Ui/Ux, print template.',
+        photo: '',
+        contact: {
+            facebook: '',
+            dribble: '',
+            behance: '',
+            twitter: ''
+        }
+    },
+    {
+        id: '5',
+        name: 'MARK TWEN',
+        information: 'Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed dooing eiusmod tempor incididut labore Ui/Ux, print template.',
+        photo: '',
+        contact: {
+            facebook: '',
+            dribble: '',
+            behance: '',
+            twitter: ''
+        }
+    },
+],
     isFetching: false,
     isGoodMessage: false,
     isGoodSubscribe: false,
@@ -103,7 +190,7 @@ const getVideo = (): thunkType => async (dispatch) => {
     createThunk(dispatch, null, API.getVideo.bind(API), actions.addVideo)
 }
 
-const getProjects = (pageSize = 8, title = 'ALL'): thunkType => async (dispatch) => {
+const getProjects = (pageSize = 8, title = ''): thunkType => async (dispatch) => {
     // createThunk(dispatch, null, API.getProject.bind(API), actions.addProjects)
     const responce = await API.getProject(pageSize, title)
     if (responce.resultCode === ResultCodeEnum.Succes) {

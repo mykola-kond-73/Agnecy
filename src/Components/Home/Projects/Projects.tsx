@@ -7,6 +7,8 @@ import TextInfo from '../../Fregments/TextInfo/TextInfo'
 import Image from '../../Fregments/Image/Image'
 import { getProjects as getProjectsThunk, actions } from '../../../Redux/reducer'
 import Preloader from '../../Fregments/Preloader/Preloader'
+import HR from '../../Fregments/Hr/Hr'
+import FalsePhoto from '../../Fregments/FalsePhoto/FalsePhoto'
 
 const Project: FC<Props> = props => {
     const [title, setTitle] = useState('FEATURE PRODUCTS')
@@ -25,14 +27,15 @@ const Project: FC<Props> = props => {
     }
 
     return (
-        <div>
-            <div>
+        <div className={classes.container}>
+            <div className={classes.text}>
                 <TextInfo title={title} text={text} />
+                <HR/>
             </div>
-            <div>
+            <div className={classes.filters}>
                 {filters.map(elem => {
                     return (
-                        <div onClick={() => projectsFunction(8, elem.content)}>
+                        <div onClick={() => projectsFunction(8, elem.content)} >
                             {elem.content}
                         </div>
                     )
@@ -41,17 +44,18 @@ const Project: FC<Props> = props => {
                 }
             </div>
             {!props.isGetProject ?
-                <div>
+                <div  className={classes.projects}>
                     {props.project!.map(elem => {
                         return (
-                            <div>
+                            <div className={classes.item}>
                                 {
                                     elem.photo
                                         ?
                                         <div>
                                             <Image src={elem.photo} alt={`project ${elem.id}`} />
                                         </div>
-                                        : <div></div>
+                                        : <div className={classes.falseItem}><FalsePhoto/>
+                                            </div>
 
                                 }
                             </div>

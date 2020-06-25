@@ -14,29 +14,32 @@ const Head: FC<Props> = props => {
     const [text, setText] = useState('Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed do eius-mod tempor incididunt ut labore et. ectetur adig ipis cing elit, sed do eiusmod tempor incididunt.')
 
     return (
-        <div>
-            <div>
-                <div>
+        <div className={classes.container}>
+            <div className={classes.content}>
+                <div className={classes.text}>
                     <TextInfo title={title} text={text} />
                 </div>
-                <div>
+                <div className={classes.button}>
                     <AButton textButton='Contact Us' />
                 </div>
             </div>
-            <div>
-                <Video video={props.video!} />
-            </div>
+            {props.video ?
+                <div className={classes.video}>
+                    <Video video={props.video!} />
+                </div>
+                : <div className={classes.falseVideo}>&space;</div>
+            }
         </div>
     )
 }
-const mapStateToProps=(state:AppStateType)=>{
-    return{
-        video:getVideo(state)
+const mapStateToProps = (state: AppStateType) => {
+    return {
+        video: getVideo(state)
     }
 }
 
-const connector=connect(mapStateToProps,{})
+const connector = connect(mapStateToProps, {})
 
 export default connector(Head)
 
-type Props=ConnectedProps<typeof connector>
+type Props = ConnectedProps<typeof connector>

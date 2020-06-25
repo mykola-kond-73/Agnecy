@@ -1,0 +1,45 @@
+.appWraper {
+    width: 100%;
+    max-width: 1100px;
+    font-family: Arial;
+    font-size: 12px;
+    color: #3f3f3f;
+    margin: 0 auto;
+}
+
+.appWraper a {
+    color: white;
+    text-decoration: none;
+}
+
+.headerApp,
+.footerApp {
+    background-color: #312f30;
+}
+
+@media(max-width:600px) {
+    .headerApp>header {
+        border-width: 0 0 20px 0;
+    }
+}
+
+@media(min-width:600px) {
+    .headerApp>header {
+        border-width: 20px 10px 40px 10px;
+    }
+}
+
+@media(min-width:900px) {
+    .headerApp>header {
+        border-width: 25px 50px 50px;
+    }
+}
+
+@media(min-width:1100px) {
+    .headerApp>header {
+        border-width: 25px 100px 30px 100px;
+    }
+    .footerApp>footer{
+        padding:0 100px;
+    }
+}

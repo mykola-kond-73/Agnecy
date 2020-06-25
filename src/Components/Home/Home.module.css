@@ -1,0 +1,19 @@
+.items {
+    padding: 25px 10px;
+}
+
+.homeHead{
+    background-color: #f6f2f1;
+}
+
+@media(min-width:900px) {
+    .items {
+        padding: 25px 50px;
+    }
+}
+
+@media(min-width:1100px) {
+    .items {
+        padding: 25px 100px
+    }
+}

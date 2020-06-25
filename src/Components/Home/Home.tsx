@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react'
-import classes from './HomeContainer.module.css'
+import classes from './Home.module.css'
 import Head from './Head/Head'
 import Servises from './Servises/Servises'
 import Projects from './Projects/Projects'
@@ -11,33 +11,34 @@ import { getVideo, getProjects, getPersons, actions } from './../../Redux/reduce
 
 const Home: FC<Props> = props => {
     useEffect(() => {
-        const promise = Promise.all(
-            [props.getPersons(),
-            props.getProjects(),
-            props.getVideo()
+        Promise.all(
+            [
+                props.getPersons(),
+                props.getProjects(),
+                props.getVideo()
             ]).then(() => {
                 props.updateIsFetchin(true)
             })
-    },[])
+    }, [])
 
     return (
-        <div>
-            <div>
+        <div className={classes.container}>
+            <div className={`${classes.homeHead} ${classes.items}`}>
                 <Head />
             </div>
-            <div>
+            <div className={classes.items}>
                 <Servises />
             </div>
-            <div>
+            <div className={classes.items}>
                 <Projects />
             </div>
-            <div>
+            <div className={classes.items}>
                 <Persons />
             </div>
-            <div>
+            <div className={classes.items}>
                 <Subscribe />
             </div>
-            <div>
+            <div className={classes.items}>
                 <Contact />
             </div>
         </div>
