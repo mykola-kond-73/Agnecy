@@ -35,7 +35,7 @@ const Home: FC<Props> = props => {
             <div className={classes.items}>
                 <Persons />
             </div>
-            <div className={classes.items}>
+            <div className={`${classes.homeSubscribe} ${classes.items}`}>
                 <Subscribe />
             </div>
             <div className={classes.items}>

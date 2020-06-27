@@ -6,7 +6,7 @@ const ContactBlockData: FC = () => {
     const [email] = useState('redwan@deviserwed.com')
     const [tel] = useState('(+88) 017 617 46373')
     return (
-        <div>
+        <div className={classes.container}>
             <h4>
                 CONTACT INFO
             </h4>

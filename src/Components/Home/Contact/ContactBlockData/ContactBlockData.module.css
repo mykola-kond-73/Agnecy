@@ -1,0 +1,9 @@
+.container {
+    color: white;
+    padding-left: 50px;
+    width: 240px;
+}
+
+.container>div {
+    padding: 7px;
+}

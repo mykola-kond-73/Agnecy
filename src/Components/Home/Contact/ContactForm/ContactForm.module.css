@@ -1,0 +1,64 @@
+.inputs,
+.inputs>div{
+    display: flex;
+}
+
+.inputs{
+    flex-direction: column;
+}
+
+.inputs input{
+    margin-right: 0;
+    padding:10px 25px;
+    width:180px
+}
+
+
+.inputs input,
+.inputs textarea{
+    background-color: #f6f2f1;
+    margin:0 0 30px 0;
+}
+
+.firstInp{
+    margin-right: 40px;
+}
+
+.inputs textarea,
+.button button{
+    padding: 15px 30px;
+}
+
+.inputs input,
+.inputs textarea,
+.button button{
+    border-radius: 5px;
+    border:none;
+}
+
+.inputs textarea{
+    width:440px;
+    height: 150px;
+}
+
+.button button{
+    width:500px;
+    color:white;
+    font-size:0.9em;
+    background-color: #ff3f40;
+}
+
+@media(max-width:600px){
+    .inputs>div{
+        flex-direction: column;
+    }
+
+    .inputs input,
+    .inputs textarea{
+        width:240px;
+    }    
+
+    .button button{
+        width:300px;
+    }
+}

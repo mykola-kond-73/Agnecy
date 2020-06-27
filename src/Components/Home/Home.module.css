@@ -6,6 +6,11 @@
     background-color: #f6f2f1;
 }
 
+.homeSubscribe{
+    background: #f3f0dd;
+    margin-top:25px;
+}
+
 @media(min-width:900px) {
     .items {
         padding: 25px 50px;

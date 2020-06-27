@@ -33,7 +33,7 @@ const Persons: FC<Props> = props => {
                 </div>
                 <div className={classes.personInformation_RestPersons}>
                     <div className={classes.personInformation}>
-                        <div>
+                        <div className={classes.personData}>
                             <TextInfo title={personData.name} text={personData.information} />
                         </div>
                         <div className={classes.sotialNetwork}>

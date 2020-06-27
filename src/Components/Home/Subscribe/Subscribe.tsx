@@ -7,17 +7,18 @@ import { reduxForm, InjectedFormProps, Field } from 'redux-form'
 import Button from '../../Fregments/Button/Button'
 import { AppStateType } from '../../../Redux/reduxStore'
 import { getIsGoodSubscribe } from '../../../Redux/selector'
-import Image from '../../Fregments/Image/Image'
+
 
 const Subscribe: FC<Props> = props => {
     const [title, setTitle] = useState('Design tips, tricks, and freebies. Delivered weekly.')
     const [text, settext] = useState('Lorem ipsum dolor sit amet, consectetur adipis cing elif, sed do eiusmod.')
+    const [photo,setPhoto]=useState('')
     const onSubmit = (formData: loginFormDataTypes) => {
         props.updateIsGoodSubscribe(true)
         props.postSubscribe(formData.subscribe)
     }
     return (
-        <div>
+        <div className={classes.container} >
             <div>
                 <TextInfo title={title} text={text} />
             </div>
@@ -30,11 +31,11 @@ const Subscribe: FC<Props> = props => {
 
 const SubscribeForm: FC<InjectedFormProps<loginFormDataTypes, ownProps> & ownProps> = ({ handleSubmit, error, isGoodSubscribe }) => {
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
+        <form onSubmit={handleSubmit} className={classes.form}>
+            <div className={classes.input}>
                 <Field name='subscribe' component='input' placeHolder='Email Address...' validate={[]} />
             </div>
-            <div>
+            <div className={classes.button}>
                 <Button inscription='SUBSCRIBE' disabled={isGoodSubscribe} />
             </div>
         </form>

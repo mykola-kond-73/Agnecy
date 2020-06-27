@@ -11,11 +11,7 @@
 }
 
 .information>div>p {
-    padding: 5px 0 0 10px;
-}
-
-.information>hr {
-    margin-left: 10px;
+    padding: 5px 0;
 }
 
 .personsContent,
@@ -27,6 +23,7 @@
 
 .personsContent {
     padding: 35px 0 0 10px;
+    flex-wrap: wrap;
 }
 
 .photo>div img,
@@ -36,27 +33,19 @@
     margin-right: 40px;
 }
 
-.personInformation>div>div>p {
-    width: 450px;
-}
-
-.personInformation_RestPersons {
-    padding-top: 10px;
-}
-
 .personInformation_RestPersons a {
     color: #3f3f3f;
 }
 
 .sotialNetwork div {
-    left: -13px;
     padding: 20px 13px;
+
     font-weight: 500;
 }
 
 .personPhoto>div img,
 .falsePersonsPhoto>div,
-.sotialNetwork div{
+.sotialNetwork div {
     position: relative;
 }
 
@@ -64,8 +53,7 @@
 .falsePersonsPhoto>div {
     width: 130px;
     height: 130px;
-    margin: 0 7.5px;
-    left:-7.5px;
+
 }
 
 .RestPersons {
@@ -80,4 +68,86 @@
     /* position: relative;
     top: -28px; */
     opacity: 0;
+}
+
+@media(max-width:600px) {
+
+    .information,
+    .personData {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .information>div>p {
+        width: 300px;
+    }
+
+    .photo>div img,
+    .falsePhoto>div {
+        margin-right: 0;
+    }
+
+    .RestPersons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media(max-width:960px) {
+
+    .container,
+    .personsContent,
+    .personInformation {
+        align-items: center;
+    }
+
+    .information>div>div,
+    .personData>div>div {
+        text-align: center;
+    }
+
+    .personsContent,
+    .personInformation {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .personPhoto>div img,
+    .falsePersonsPhoto>div {
+        margin: 0 7.5px;
+        left: -7.5px;
+    }
+
+    .personInformation_RestPersons {
+        padding-top: 30px;
+    }
+
+    .personInformation>div>div>p {
+        width: 300px;
+    }
+}
+
+@media(min-width:960px) {
+
+    .information>div>p {
+        padding: 5px 0 0 10px;
+    }
+
+    .information>hr {
+        margin-left: 10px;
+    }
+
+    .sotialNetwork div {
+        left: -13px;
+    }
+
+    .personInformation_RestPersons {
+        padding-top: 10px;
+    }
+
+    .personInformation>div>div>p {
+        width: 450px;
+    }
 }

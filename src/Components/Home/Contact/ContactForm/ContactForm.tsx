@@ -5,30 +5,32 @@ import { messageContentType } from '../../../../Redux/reducer'
 import Button from '../../../Fregments/Button/Button'
 import { required } from '../../../../Untils/Validators'
 
-const ContactForm: FC<InjectedFormProps<messageContentType,ownPropsType>&ownPropsType> = ({ handleSubmit, error,isGoodMessage }) => {
+const ContactForm: FC<InjectedFormProps<messageContentType, ownPropsType> & ownPropsType> = ({ handleSubmit, error, isGoodMessage }) => {
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
+        <form onSubmit={handleSubmit} className={classes.form}>
+            <div className={classes.inputs}>
                 <div>
-                    <Field name='name' component='input' placeHolder='NAME' valid={[required]} />
-                </div>
-                <div>
-                    <Field name='email' component='input' placeHolder='Your Mail' valid={[required]} />
+                    <div className={classes.firstInp}>
+                        <Field name='name' component='input' placeHolder='NAME' valid={[required]} />
+                    </div>
+                    <div>
+                        <Field name='email' component='input' placeHolder='Your Mail' valid={[required]} />
+                    </div>
                 </div>
                 <div>
                     <Field name='message' component='textarea' placeHolder='Type your message' />
                 </div>
             </div>
 
-            <div>
+            <div className={classes.button}>
                 <Button inscription='SEND MESSAGE' disabled={isGoodMessage} />
             </div>
         </form>
     )
 }
 
-export const ReduxContactForm = reduxForm<messageContentType,ownPropsType>({ form: 'contact' })(ContactForm)
+export const ReduxContactForm = reduxForm<messageContentType, ownPropsType>({ form: 'contact' })(ContactForm)
 
-type ownPropsType={
-    isGoodMessage:boolean
+type ownPropsType = {
+    isGoodMessage: boolean
 }
