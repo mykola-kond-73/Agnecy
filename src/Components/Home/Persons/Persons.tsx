@@ -55,7 +55,7 @@ const Persons: FC<Props> = props => {
                         {props.persons!.map((elem, index) => {
                             if (index != personIndex) {
                                 return (
-                                    <div onClick={() => setPersonIndex(index)}>
+                                    <div onClick={() => {setPersonIndex(index)}} >
                                         <div className={classes.personPhoto}>
                                             {elem.photo
                                                 ?

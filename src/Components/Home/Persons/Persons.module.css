@@ -65,9 +65,17 @@
     background-color: #312f30;
     text-align: center;
     padding: 5px 0;
-    /* position: relative;
-    top: -28px; */
-    opacity: 0;
+    width:130px;
+    position: relative;
+    /* top: -28px; */
+    opacity: 1;
+
+    transition: top 4000ms;
+    transition-timing-function:linear ;
+}
+
+.personName:hover{
+    top:-28px;
 }
 
 @media(max-width:600px) {
