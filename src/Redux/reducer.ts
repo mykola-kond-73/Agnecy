@@ -116,7 +116,7 @@ const initialState = {
     isGetProject: false,
 }
 
-const rootReducer = (state = initialState, actions: actionsType) => {
+export const rootReducer = (state = initialState, actions: actionsType) => {
     switch (actions.type) {
 
         case 'ADD_VIDEO':
@@ -128,7 +128,7 @@ const rootReducer = (state = initialState, actions: actionsType) => {
         case 'ADD_PROJECT':
             return {
                 ...state,
-                project: actions.projects
+                projects: actions.projects
             }
 
         case 'ADD_PERSOM':
@@ -176,18 +176,18 @@ const actions = {
     updateisGetProject: (isGetProject: boolean) => ({ type: 'UP_DATE_IS_GET_PROJECT', isGetProject } as const),
 }
 
-const createThunk = async (dispatch: dispatch, APIparam: any, APIMethod: (APIparam: any) => any, ActionsCreator: (actionParam: any) => actionsType) => {
+const createThunk = async (dispatch: dispatch, APIMethod: (APIparam: any) => any, ActionsCreator: (actionParam: any) => actionsType, APIparam?: any) => {
     const responce = await APIMethod(APIparam)
 
     if (responce.data.resultCode === ResultCodeEnum.Succes) {
-        dispatch(ActionsCreator(responce.data.data))
+        dispatch(ActionsCreator(responce.data))
     } else {
         alert(responce.data.message)
     }
 }
 
 const getVideo = (): thunkType => async (dispatch) => {
-    createThunk(dispatch, null, API.getVideo.bind(API), actions.addVideo)
+    createThunk(dispatch, API.getVideo, actions.addVideo)
 }
 
 const getProjects = (pageSize = 8, title = ''): thunkType => async (dispatch) => {
@@ -200,18 +200,18 @@ const getProjects = (pageSize = 8, title = ''): thunkType => async (dispatch) =>
 }
 
 const getPersons = (): thunkType => async (dispatch) => {
-    createThunk(dispatch, null, API.getPerson.bind(API), actions.addPerson)
+    createThunk(dispatch, API.getPerson.bind(API), actions.addPerson)
 }
 //* >>>
 //* >>>   там де "await" треба додати обробку помилок 
 //* >>>
 const postMessage = (messageContent: messageContentType): thunkType => async (dispatch) => {
-    await createThunk(dispatch, messageContent, API.postMessage.bind(API), actions.updateIsGoodMessage)
+    await createThunk(dispatch, API.postMessage.bind(API), actions.updateIsGoodMessage, messageContent)
     dispatch(actions.updateIsGoodMessage(false))
 }
 
 const postSubscribe = (subscribeContent: string): thunkType => async (dispatch) => {
-    await createThunk(dispatch, subscribeContent, API.postSubscribe.bind(API), actions.updateIsGoodSubscribe)
+    await createThunk(dispatch, API.postSubscribe.bind(API), actions.updateIsGoodSubscribe, subscribeContent)
     dispatch(actions.updateIsGoodSubscribe(false))
 }
 
@@ -226,7 +226,7 @@ export {
 
 export default rootReducer
 
-type initialStateType = typeof initialState
+export type initialStateType = typeof initialState
 type actionsType = InfinitActionsCreatorType<typeof actions>
 type thunkType = BaseThunkType<actionsType>
 type dispatch = Dispatch<actionsType>
