@@ -46,7 +46,7 @@ const Servises: FC = () => {
             <div className={classes.services}>
                 {servise.map(elem => {
                     return (
-                        <div className={classes.item}>
+                        <div key={elem.title} className={classes.item}>
                             <div>
                                 <Image src={elem.img} alt='***' />
                             </div>

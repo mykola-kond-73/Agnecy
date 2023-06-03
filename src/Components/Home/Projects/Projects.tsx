@@ -35,7 +35,7 @@ const Project: FC<Props> = props => {
             <div className={classes.filters}>
                 {filters.map(elem => {
                     return (
-                        <div onClick={() => projectsFunction(8, elem.content)} >
+                        <div key={elem.content} onClick={() => projectsFunction(8, elem.content)} >
                             {elem.content}
                         </div>
                     )
@@ -47,7 +47,7 @@ const Project: FC<Props> = props => {
                 <div  className={classes.projects}>
                     {props.project!.map(elem => {
                         return (
-                            <div className={classes.item}>
+                            <div key={elem.id} className={classes.item}>
                                 {
                                     elem.photo
                                         ?

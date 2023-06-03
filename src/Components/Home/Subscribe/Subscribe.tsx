@@ -33,7 +33,7 @@ const SubscribeForm: FC<InjectedFormProps<loginFormDataTypes, ownProps> & ownPro
     return (
         <form onSubmit={handleSubmit} className={classes.form}>
             <div className={classes.input}>
-                <Field name='subscribe' component='input' placeHolder='Email Address...' validate={[]} />
+                <Field name='subscribe' component='input' placeholder='Email Address...' validate={[]} />
             </div>
             <div className={classes.button}>
                 <Button inscription='SUBSCRIBE' disabled={isGoodSubscribe} />

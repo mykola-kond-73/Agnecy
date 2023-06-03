@@ -11,14 +11,14 @@ const ContactForm: FC<InjectedFormProps<messageContentType, ownPropsType> & ownP
             <div className={classes.inputs}>
                 <div>
                     <div className={classes.firstInp}>
-                        <Field name='name' component='input' placeHolder='NAME' valid={[required]} />
+                        <Field name='name' component='input' placeholder='NAME' valid={[required]} />
                     </div>
                     <div>
-                        <Field name='email' component='input' placeHolder='Your Mail' valid={[required]} />
+                        <Field name='email' component='input' placeholder='Your Mail' valid={[required]} />
                     </div>
                 </div>
                 <div>
-                    <Field name='message' component='textarea' placeHolder='Type your message' />
+                    <Field name='message' component='textarea' placeholder='Type your message' />
                 </div>
             </div>
 

@@ -177,12 +177,12 @@ const actions = {
 }
 
 const createThunk = async (dispatch: dispatch, APIMethod: (APIparam: any) => any, ActionsCreator: (actionParam: any) => actionsType, APIparam?: any) => {
-    const responce = await APIMethod(APIparam)
+    const responce:ResponseType = await APIMethod(APIparam)
 
-    if (responce.data.resultCode === ResultCodeEnum.Succes) {
+    if (responce.resultCode === ResultCodeEnum.Succes) {
         dispatch(ActionsCreator(responce.data))
     } else {
-        alert(responce.data.message)
+        // alert(responce.data?.message)
     }
 }
 
@@ -256,4 +256,11 @@ export type contactType = {
     dribble: string
     behance: string
     twitter: string
+}
+
+type ResponseType={
+    resultCode?:number
+    data?:{
+        message?:string
+    }
 }
