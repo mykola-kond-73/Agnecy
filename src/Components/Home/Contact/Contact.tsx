@@ -10,8 +10,8 @@ import { getIsGoodMessage } from '../../../Redux/selector'
 import HR from '../../Fregments/Hr/Hr'
 
 const Contact: FC<Props> = props => {
-    const [title, setTitle] = useState('GET IN TOUCH')
-    const [text, setText] = useState('Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed do eiusmod tempor incididunt ut labore et.ur adipis cing elit, sed do eiusmod tempor incididunt ut labore et. ur adipis cing elit, sed do eiusmod tempor incididunt ut labore et.')
+    const [title] = useState('GET IN TOUCH')
+    const [text] = useState('Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed do eiusmod tempor incididunt ut labore et.ur adipis cing elit, sed do eiusmod tempor incididunt ut labore et. ur adipis cing elit, sed do eiusmod tempor incididunt ut labore et.')
     const onSubmit = (formData: messageContentType) => {
         props.updateIsGoodMessage(true)
         props.postMessage(formData)
