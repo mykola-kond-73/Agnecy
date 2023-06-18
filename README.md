@@ -1,4 +1,4 @@
-*This project and [Piroll]((https://mykola-kond-73.github.io/piroll/)) are my first projects. There is little business logic in them, the emphasis is on appearance and adaptability*
+*This project and [Piroll](https://mykola-kond-73.github.io/piroll/) are my first projects. There is little business logic in them, the emphasis is on appearance and adaptability*
 
 ## Available Scripts
 
